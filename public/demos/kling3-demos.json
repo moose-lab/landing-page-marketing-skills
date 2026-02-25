@@ -1,61 +1,246 @@
 {
   "model": "kling3",
-  "generated_at": "2026-02-25T06:05:47.759Z",
+  "provider": "wavespeed",
+  "generated_at": "2026-02-25T09:45:25.314Z",
   "demos": [
     {
-      "key": "product_showcase",
-      "label": "Product Showcase",
-      "status": "dry-run",
-      "video_url": null,
-      "settings": null,
+      "key": "ecommerce_product_360",
+      "label": "Ecommerce Product 360° Showcase",
+      "status": "completed",
+      "video_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/887bbe4fb81b4ae2a9ff6196ad8ee576/1.mp4",
+      "prompt": null,
+      "multi_prompt": [
+        {
+          "prompt": "A minimalist black matte mechanical keyboard on a pure white infinite studio background, rotating smoothly 360 degrees clockwise, RGB lighting gently breathing, keycap text sharp and readable, fixed macro camera, smooth turntable motion, commercial product photography style, soft high-key lighting",
+          "duration": 4
+        },
+        {
+          "prompt": "Extreme close-up of keyboard switches and premium keycap texture, shallow depth of field bokeh, light rays catching polished metal surface creating sparkle reflections, editorial product photography, 4K cinematic grade",
+          "duration": 4
+        }
+      ],
+      "settings": {
+        "aspect_ratio": "16:9",
+        "duration": 8,
+        "sound": false,
+        "cfg_scale": 0.7
+      },
       "error": null
     },
     {
-      "key": "cinematic_landscape",
-      "label": "Cinematic Landscape",
-      "status": "dry-run",
-      "video_url": null,
-      "settings": null,
+      "key": "attractive_lifestyle_pov",
+      "label": "Attractive Lifestyle POV",
+      "status": "completed",
+      "video_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/10aa46d76c734cfa9d7abaf2514d1345/1.mp4",
+      "prompt": null,
+      "multi_prompt": [
+        {
+          "prompt": "First-person POV shot, a beautiful young woman with long dark hair sitting across from camera in a dimly lit aesthetic cafe, warm amber lighting, she looks up from her coffee and smiles warmly at the camera, candid natural energy, soft bokeh background, cinematic color grading",
+          "duration": 4
+        },
+        {
+          "prompt": "She reaches across the table playfully, close-up of her hand touching the camera perspective, warm golden hour light streaming through window, intimate and inviting mood, shallow depth of field, film grain, social media vertical format",
+          "duration": 4
+        }
+      ],
+      "settings": {
+        "aspect_ratio": "9:16",
+        "duration": 8,
+        "sound": true,
+        "cfg_scale": 0.4
+      },
       "error": null
     },
     {
-      "key": "lifestyle_vertical",
-      "label": "Lifestyle / Social Reel",
-      "status": "dry-run",
-      "video_url": null,
-      "settings": null,
+      "key": "anime_action_scene",
+      "label": "Anime Action Battle",
+      "status": "completed",
+      "video_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/6247ab981baf4f0d8022bcd755fc5d2e/1.mp4",
+      "prompt": null,
+      "multi_prompt": [
+        {
+          "prompt": "A warrior girl with flowing blue hair draws her katana dramatically in a cherry blossom storm, petals swirl in slow motion around her, anime style with cel-shading, dramatic speed lines, vibrant colors, dynamic camera swooping from low angle, epic lighting",
+          "duration": 4
+        },
+        {
+          "prompt": "She unleashes a powerful energy slash, bright blue sword light trails cutting through the air, cherry blossom petals exploding outward, anime-style impact frames with motion blur, dramatic close-up of determined eyes, Japanese animation quality, cinematic camera shake",
+          "duration": 4
+        }
+      ],
+      "settings": {
+        "aspect_ratio": "16:9",
+        "duration": 8,
+        "sound": true,
+        "cfg_scale": 0.4
+      },
       "error": null
     },
     {
-      "key": "before_after",
-      "label": "Before / After Transform",
-      "status": "dry-run",
-      "video_url": null,
-      "settings": null,
+      "key": "food_mukbang",
+      "label": "Food Mukbang / ASMR Close-up",
+      "status": "completed",
+      "video_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/717d8218416d41b481b80daf8cedc2f7/1.mp4",
+      "prompt": null,
+      "multi_prompt": [
+        {
+          "prompt": "Extreme close-up of sizzling wagyu beef steak on a hot iron plate, steam rising dramatically, golden butter melting and flowing over the surface, oil splashing in slow motion, warm amber restaurant lighting, ASMR food photography, macro lens shallow depth of field",
+          "duration": 4
+        },
+        {
+          "prompt": "Chopsticks elegantly pick up a perfectly cooked piece of beef, cheese stretching in slow motion, juicy texture visible, golden sesame seeds falling in slow-mo, appetizing warm color grading, professional food commercial photography, 4K detail",
+          "duration": 4
+        }
+      ],
+      "settings": {
+        "aspect_ratio": "9:16",
+        "duration": 8,
+        "sound": true,
+        "cfg_scale": 0.6
+      },
       "error": null
     },
     {
-      "key": "viral_hook",
-      "label": "Viral Hook (Short)",
-      "status": "dry-run",
-      "video_url": null,
-      "settings": null,
+      "key": "cyberpunk_city",
+      "label": "Cyberpunk Urban Night",
+      "status": "completed",
+      "video_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/3ec544575afb4ffbbf3e294541b5d08d/1.mp4",
+      "prompt": null,
+      "multi_prompt": [
+        {
+          "prompt": "A young man in a vintage leather jacket walks confidently down a rain-soaked Tokyo alley at night, neon signs in Japanese reflecting in puddles creating a kaleidoscope of pink and cyan, slow tracking shot following from behind, volumetric fog, cinematic anamorphic lens",
+          "duration": 5
+        },
+        {
+          "prompt": "He stops and looks up at a massive holographic advertisement floating above the street, camera cranes up dramatically to reveal the vast cyberpunk cityscape, flying vehicles streak across the sky, heavy rain with neon-colored light streaks, Blade Runner atmosphere, epic scale reveal",
+          "duration": 5
+        }
+      ],
+      "settings": {
+        "aspect_ratio": "16:9",
+        "duration": 10,
+        "sound": true,
+        "cfg_scale": 0.45
+      },
       "error": null
     },
     {
-      "key": "explainer_multishot",
-      "label": "Product Explainer",
-      "status": "dry-run",
-      "video_url": null,
-      "settings": null,
+      "key": "fitness_transformation",
+      "label": "Fitness / Body Transformation",
+      "status": "completed",
+      "video_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/9cb74f4dc86f4fdd8d0cdc1df25bd6b7/1.mp4",
+      "prompt": null,
+      "multi_prompt": [
+        {
+          "prompt": "A fit athletic male model doing intense boxing training in a gritty industrial gym, sweat glistening on defined muscles, punching a heavy bag with explosive power, dust particles floating in dramatic shaft of light from window, slow motion impact, cinematic sports photography",
+          "duration": 4
+        },
+        {
+          "prompt": "Close-up of his determined face and clenched fist, sweat droplets flying off in super slow motion, speed-ramp from slow to fast as he delivers a final powerful punch, dynamic camera shake on impact, motivational energy, fitness brand commercial quality",
+          "duration": 4
+        }
+      ],
+      "settings": {
+        "aspect_ratio": "9:16",
+        "duration": 8,
+        "sound": true,
+        "cfg_scale": 0.5
+      },
       "error": null
     },
     {
-      "key": "ecommerce_fashion",
-      "label": "Fashion / Apparel",
-      "status": "dry-run",
-      "video_url": null,
-      "settings": null,
+      "key": "fashion_editorial",
+      "label": "Fashion Editorial Model Walk",
+      "status": "completed",
+      "video_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/27d1af8712074f4d96514def242d2282/1.mp4",
+      "prompt": null,
+      "multi_prompt": [
+        {
+          "prompt": "A tall elegant female model in a haute couture flowing silk dress, walking confidently toward camera on a minimalist white runway, fabric catching light with subtle movement, hair flowing gently as if blown by a fan, editorial fashion photography, soft rim lighting, cinematic slow-motion",
+          "duration": 4
+        },
+        {
+          "prompt": "The model shifts weight to one hip and turns shoulders toward camera, extreme close-up of premium fabric texture and intricate stitching details, soft golden light, luxury fashion brand aesthetic, 4K editorial quality",
+          "duration": 4
+        }
+      ],
+      "settings": {
+        "aspect_ratio": "9:16",
+        "duration": 8,
+        "sound": true,
+        "cfg_scale": 0.5
+      },
+      "error": null
+    },
+    {
+      "key": "live_action_drama",
+      "label": "Live-Action Cinematic Drama",
+      "status": "completed",
+      "video_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/42ea64c928f7439294121f1dce6b005b/1.mp4",
+      "prompt": null,
+      "multi_prompt": [
+        {
+          "prompt": "A man in a vintage leather jacket sits alone at a dimly lit bar, nursing a whiskey glass, the TV behind him shows a historic moon landing broadcast, moody film noir lighting, slow dolly-in from wide to medium shot, Arri Alexa look, anamorphic lens flare",
+          "duration": 5
+        },
+        {
+          "prompt": "He slowly looks up at the TV screen, face illuminated by the flickering blue glow, a single tear rolls down his cheek, rack focus from his face to the TV reflection in the bar mirror, cinematic emotional beat, warm amber and cool blue color contrast, 4K film grain",
+          "duration": 5
+        }
+      ],
+      "settings": {
+        "aspect_ratio": "16:9",
+        "duration": 10,
+        "sound": true,
+        "cfg_scale": 0.5
+      },
+      "error": null
+    },
+    {
+      "key": "luxury_car_reveal",
+      "label": "Luxury Car Commercial",
+      "status": "completed",
+      "video_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/b80f6d41ac2542c398d6b86e205e7322/1.mp4",
+      "prompt": null,
+      "multi_prompt": [
+        {
+          "prompt": "A sleek black luxury sports car emerging from darkness, dramatic rim lighting gradually revealing its contours, light rays catching polished chrome and glossy paint, slow dolly around the front quarter panel, automotive commercial photography, studio-quality lighting, premium brand aesthetic",
+          "duration": 5
+        },
+        {
+          "prompt": "The car speeds through a rain-slicked coastal highway at golden hour, water splashing from tires in slow motion, sun flare through windshield, aerial drone tracking shot pulling back to reveal dramatic cliff coastline, cinematic automotive commercial, epic orchestral energy",
+          "duration": 5
+        }
+      ],
+      "settings": {
+        "aspect_ratio": "16:9",
+        "duration": 10,
+        "sound": true,
+        "cfg_scale": 0.6
+      },
+      "error": null
+    },
+    {
+      "key": "skincare_beauty",
+      "label": "Skincare / Beauty Ad",
+      "status": "completed",
+      "video_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/68ce7cda1a624445b90367b67ae48634/1.mp4",
+      "prompt": null,
+      "multi_prompt": [
+        {
+          "prompt": "A beautiful young Asian woman with flawless dewy skin, soft golden hour light illuminating her face, she gently applies a drop of luxury serum on her cheek, the product glistens like liquid gold, extreme close-up macro of her perfect porcelain skin texture, beauty commercial photography, soft diffused lighting",
+          "duration": 4
+        },
+        {
+          "prompt": "Slow motion of the serum droplet spreading across her skin, revealing luminous radiant glow, camera pulls back to show her satisfied gentle smile, cherry blossom petals drifting softly in the background, premium Korean beauty brand aesthetic, magazine cover quality, soft pink and gold color palette",
+          "duration": 4
+        }
+      ],
+      "settings": {
+        "aspect_ratio": "9:16",
+        "duration": 8,
+        "sound": false,
+        "cfg_scale": 0.65
+      },
       "error": null
     }
   ]

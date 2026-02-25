@@ -3,21 +3,44 @@ import path from 'path';
 
 export function saveManifest(outputDir, model, results) {
   fs.mkdirSync(outputDir, { recursive: true });
-  
-  const manifest = {
-    model,
-    generated_at: new Date().toISOString(),
-    demos: results.map(r => ({
-      key: r.key,
-      label: r.label,
-      status: r.status,
-      video_url: r.video_url,
-      settings: r.settings || null,
-      error: r.error || null,
-    })),
-  };
 
   const filePath = path.join(outputDir, `${model}-demos.json`);
+
+  // Merge with existing manifest if present (append new results, update existing keys)
+  let existing = { demos: [] };
+  if (fs.existsSync(filePath)) {
+    try {
+      existing = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    } catch {}
+  }
+
+  const newResults = results.map(r => ({
+    key: r.key,
+    label: r.label,
+    status: r.status,
+    video_url: r.video_url,
+    prompt: r.prompt || null,
+    multi_prompt: r.multi_prompt || null,
+    settings: r.settings || null,
+    error: r.error || null,
+  }));
+
+  // Merge: update existing keys, append new ones
+  const merged = new Map();
+  for (const demo of (existing.demos || [])) {
+    merged.set(demo.key, demo);
+  }
+  for (const demo of newResults) {
+    merged.set(demo.key, demo);
+  }
+
+  const manifest = {
+    model,
+    provider: 'wavespeed',
+    generated_at: new Date().toISOString(),
+    demos: [...merged.values()],
+  };
+
   fs.writeFileSync(filePath, JSON.stringify(manifest, null, 2));
   return filePath;
 }

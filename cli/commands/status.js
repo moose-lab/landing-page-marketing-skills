@@ -1,4 +1,4 @@
-import { pollTask } from '../lib/kling-api.js';
+import { pollTask } from '../lib/wavespeed-api.js';
 
 export async function checkStatus({ taskId }) {
   console.log(`\n🔍 Checking task: ${taskId}\n`);

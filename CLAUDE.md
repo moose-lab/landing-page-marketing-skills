@@ -1,6 +1,6 @@
 # landing-page-marketing-skills
 
-AI video generation skills for Claude Code. Generate multi-scene Kling 3.0 video demos and embed them on a landing page — with one CLI command.
+AI video generation skills for Claude Code. Generate multi-scene Kling 3.0 video demos via WaveSpeed.ai and embed them on a landing page — with one CLI command.
 
 ## Quick Commands
 
@@ -14,13 +14,19 @@ npm run list
 # Dry-run: inspect prompts without API calls
 npm run generate:dry
 
-# Generate all demo videos (requires PIAPI_KEY)
-export PIAPI_KEY=your_key_here
+# Generate all demo videos (requires WAVESPEED_API_KEY)
+export WAVESPEED_API_KEY=your_key_here
 npm run generate
+
+# Generate with custom agent-created presets
+node cli/index.js generate-demo --model kling3 --custom-presets ./my-presets.json
 
 # Start landing page gallery
 npm run serve
 # → http://localhost:3000
+
+# Update skills from remote
+node cli/index.js update-skills
 ```
 
 ## Install This Skill via npx
@@ -32,15 +38,16 @@ npx skills add moose-lab/landing-page-marketing-skills
 ## Project Structure
 
 ```
-skills/kling3/        ← Skill definition + scene presets
-cli/                  ← CLI commands (generate-demo, list-scenes, status)
+skills/kling3/        ← Skill definition + scene presets (WaveSpeed.ai)
+cli/                  ← CLI commands (generate-demo, list-scenes, status, update-skills)
+cli/lib/              ← WaveSpeed API wrapper, presets loader, manifest writer
 landing/              ← Node.js landing page server
-public/               ← Static assets + demo gallery HTML
+public/               ← Static assets + demo gallery HTML + video gallery UI
 .claude-plugin/       ← Claude Code plugin marketplace config
 ```
 
 ## Available Skills
 
-- `kling3-video-demos` — Generate multi-scene AI video demos with Kling 3.0 Omni
+- `kling3-video-demos` — Generate multi-scene AI video demos with Kling 3.0 via WaveSpeed.ai
 
-See `skills/kling3/SKILL.md` for full documentation.
+See `skills/kling3/SKILL.md` for full documentation including the agent automation workflow.

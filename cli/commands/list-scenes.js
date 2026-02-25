@@ -8,14 +8,16 @@ export function listScenes({ model }) {
   }
 
   console.log(`\n🎬 Available scenes for model: ${model}\n`);
-  console.log(`${'Key'.padEnd(28)} ${'Label'.padEnd(28)} ${'Mode'.padEnd(8)} ${'Duration'.padEnd(10)} Ratio`);
+  console.log(`${'Key'.padEnd(28)} ${'Label'.padEnd(28)} ${'Tier'.padEnd(8)} ${'Duration'.padEnd(10)} Ratio`);
   console.log('─'.repeat(85));
 
   for (const [key, scene] of Object.entries(presets.scenes)) {
-    const { mode, duration, aspect_ratio } = scene.settings;
-    const shots = scene.multi_shot ? `${scene.shots?.length || 1} shots` : '1 shot';
+    const { duration, aspect_ratio } = scene.settings;
+    const tier = scene.model_tier || presets.default_model || 'std';
+    const shots = scene.multi_prompt ? `${scene.multi_prompt.length} shots` : '1 shot';
+    const sound = scene.settings.sound ? ' 🎵' : '';
     console.log(
-      `${key.padEnd(28)} ${scene.label.padEnd(28)} ${mode.padEnd(8)} ${String(duration + 's').padEnd(10)} ${aspect_ratio}  (${shots})`
+      `${key.padEnd(28)} ${scene.label.padEnd(28)} ${tier.padEnd(8)} ${String(duration + 's').padEnd(10)} ${aspect_ratio}${sound}  (${shots})`
     );
   }
 

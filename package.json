@@ -1,7 +1,7 @@
 {
   "name": "landing-page-marketing-skills",
-  "version": "1.0.0",
-  "description": "AI video generation skills for Claude Code. Generate multi-scene Kling 3.0 demos with one CLI command.",
+  "version": "2.0.0",
+  "description": "AI video generation skills for Claude Code. Generate multi-scene Kling 3.0 demos via WaveSpeed.ai with one CLI command.",
   "type": "module",
   "bin": {
     "videoskills": "./cli/index.js"
