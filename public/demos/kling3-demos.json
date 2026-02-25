@@ -1,0 +1,62 @@
+{
+  "model": "kling3",
+  "generated_at": "2026-02-25T06:05:47.759Z",
+  "demos": [
+    {
+      "key": "product_showcase",
+      "label": "Product Showcase",
+      "status": "dry-run",
+      "video_url": null,
+      "settings": null,
+      "error": null
+    },
+    {
+      "key": "cinematic_landscape",
+      "label": "Cinematic Landscape",
+      "status": "dry-run",
+      "video_url": null,
+      "settings": null,
+      "error": null
+    },
+    {
+      "key": "lifestyle_vertical",
+      "label": "Lifestyle / Social Reel",
+      "status": "dry-run",
+      "video_url": null,
+      "settings": null,
+      "error": null
+    },
+    {
+      "key": "before_after",
+      "label": "Before / After Transform",
+      "status": "dry-run",
+      "video_url": null,
+      "settings": null,
+      "error": null
+    },
+    {
+      "key": "viral_hook",
+      "label": "Viral Hook (Short)",
+      "status": "dry-run",
+      "video_url": null,
+      "settings": null,
+      "error": null
+    },
+    {
+      "key": "explainer_multishot",
+      "label": "Product Explainer",
+      "status": "dry-run",
+      "video_url": null,
+      "settings": null,
+      "error": null
+    },
+    {
+      "key": "ecommerce_fashion",
+      "label": "Fashion / Apparel",
+      "status": "dry-run",
+      "video_url": null,
+      "settings": null,
+      "error": null
+    }
+  ]
+}

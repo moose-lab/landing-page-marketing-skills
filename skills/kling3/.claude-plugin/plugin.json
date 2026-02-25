@@ -1,0 +1,7 @@
+{
+  "name": "kling3-video-demos",
+  "version": "1.0.0",
+  "description": "Generate multi-scene AI video demos with Kling 3.0 Omni and embed them on your landing page. 7 hot scene presets with fine-tuned prompts and a CLI generate command.",
+  "skills": ["./SKILL.md"],
+  "assets": ["./scene-presets.json"]
+}

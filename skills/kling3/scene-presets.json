@@ -1,0 +1,117 @@
+{
+  "version": "1.0.0",
+  "model": "kling-v3",
+  "scenes": {
+    "product_showcase": {
+      "label": "Product Showcase",
+      "description": "Clean, professional product reveal for ecommerce or SaaS",
+      "settings": {
+        "aspect_ratio": "16:9",
+        "mode": "pro",
+        "duration": 8,
+        "enable_audio": false,
+        "cfg_scale": 0.6
+      },
+      "multi_shot": true,
+      "shots": [
+        { "prompt": "Elegant product floating on a minimal white studio background, slow 360-degree rotation, soft rim lighting, hyperrealistic 4K", "duration": 4 },
+        { "prompt": "Close-up of product details, macro lens bokeh, premium texture visible, cinematic grade", "duration": 4 }
+      ]
+    },
+    "cinematic_landscape": {
+      "label": "Cinematic Landscape",
+      "description": "Epic hero video for brand pages and splash sections",
+      "settings": {
+        "aspect_ratio": "16:9",
+        "mode": "pro",
+        "duration": 12,
+        "enable_audio": true,
+        "cfg_scale": 0.5
+      },
+      "multi_shot": true,
+      "shots": [
+        { "prompt": "Sweeping aerial drone shot over misty mountain valley at golden hour, cinematic, Arri Alexa look", "duration": 4 },
+        { "prompt": "Slow dolly through ancient forest path, shafts of light through canopy, 4K film grain", "duration": 4 },
+        { "prompt": "Time-lapse of clouds rolling over dramatic peak, hero moment, epic orchestral energy", "duration": 4 }
+      ]
+    },
+    "lifestyle_vertical": {
+      "label": "Lifestyle / Social Reel",
+      "description": "Vertical format lifestyle content for Instagram, TikTok, Shorts",
+      "settings": {
+        "aspect_ratio": "9:16",
+        "mode": "pro",
+        "duration": 8,
+        "enable_audio": true,
+        "cfg_scale": 0.5
+      },
+      "multi_shot": true,
+      "shots": [
+        { "prompt": "Young woman smiling in sunlit cafe, holding coffee cup, candid natural energy, warm tones", "duration": 4 },
+        { "prompt": "Her hands open a phone to reveal the app UI, close-up, satisfied reaction", "duration": 4 }
+      ]
+    },
+    "before_after": {
+      "label": "Before / After Transform",
+      "description": "Visual quality comparison — perfect for upscalers, editors, AI tools",
+      "settings": {
+        "aspect_ratio": "16:9",
+        "mode": "pro",
+        "duration": 10,
+        "enable_audio": false,
+        "cfg_scale": 0.7
+      },
+      "multi_shot": true,
+      "shots": [
+        { "prompt": "Blurry, low-resolution, grainy footage of a city street, pixelated, degraded quality", "duration": 4 },
+        { "prompt": "Same city street scene, crystal clear 4K, vibrant colors, sharp details, dramatically upscaled", "duration": 6 }
+      ]
+    },
+    "viral_hook": {
+      "label": "Viral Hook (Short)",
+      "description": "Fast-cut attention-grabbing clip for social ads and first 3 seconds",
+      "settings": {
+        "aspect_ratio": "9:16",
+        "mode": "std",
+        "duration": 5,
+        "enable_audio": true,
+        "cfg_scale": 0.4
+      },
+      "multi_shot": false,
+      "prompt": "Dramatic slow-motion close-up of a person's eyes widening in amazement, colorful light reflections, cinematic, high contrast, punchy colors"
+    },
+    "explainer_multishot": {
+      "label": "Product Explainer",
+      "description": "Multi-shot narrative explainer for SaaS onboarding or feature demos",
+      "settings": {
+        "aspect_ratio": "16:9",
+        "mode": "pro",
+        "duration": 15,
+        "enable_audio": true,
+        "cfg_scale": 0.6
+      },
+      "multi_shot": true,
+      "shots": [
+        { "prompt": "Person frustrated at cluttered desk with multiple screens, dim light, overwhelmed expression", "duration": 4 },
+        { "prompt": "They discover the app UI on screen, bright light washes in, interface appears clean and simple", "duration": 5 },
+        { "prompt": "Same person relaxed, smiling at organized workspace, task complete notification on screen", "duration": 6 }
+      ]
+    },
+    "ecommerce_fashion": {
+      "label": "Fashion / Apparel",
+      "description": "Model showcase for clothing, accessories, wearables",
+      "settings": {
+        "aspect_ratio": "9:16",
+        "mode": "pro",
+        "duration": 8,
+        "enable_audio": false,
+        "cfg_scale": 0.55
+      },
+      "multi_shot": true,
+      "shots": [
+        { "prompt": "Model walking toward camera wearing premium jacket, editorial fashion photography style, neutral backdrop", "duration": 4 },
+        { "prompt": "Close-up of fabric texture and stitching details, tactile quality, soft natural lighting", "duration": 4 }
+      ]
+    }
+  }
+}

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video Skills — AI Video Generation Skills for Claude Code</title>
+  <meta name="description" content="The missing skill for AI video generation. Generate multi-scene Kling 3.0 demos, hot video types, and landing page galleries with one CLI command." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #fafafa; --surface: #fff; --border: #e5e7eb; --text: #111827;
+      --muted: #6b7280; --accent: #7c3aed; --accent-light: #ede9fe;
+      --green: #059669; --green-light: #d1fae5;
+      --code-bg: #1e1e2e; --code-text: #cdd6f4;
+      --radius: 8px; --radius-lg: 12px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,250,250,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px; height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-size: 15px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+    .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; display: inline-block; }
+    .nav-links { display: flex; align-items: center; gap: 20px; font-size: 14px; color: var(--muted); }
+    .nav-links a:hover { color: var(--text); }
+    .nav-gh {
+      background: var(--text); color: #fff !important;
+      padding: 6px 14px; border-radius: var(--radius);
+      font-size: 13px; font-weight: 600;
+      display: flex; align-items: center; gap: 6px;
+    }
+
+    /* HERO */
+    .hero { max-width: 760px; margin: 0 auto; padding: 100px 24px 80px; text-align: center; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--green-light); color: var(--green);
+      font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
+      text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 900;
+      letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p { font-size: 1.1rem; color: var(--muted); max-width: 520px; margin: 0 auto 40px; line-height: 1.65; }
+
+    /* INSTALL BOX */
+    .install-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .install-box {
+      background: var(--code-bg); border-radius: var(--radius-lg);
+      padding: 18px 20px; display: flex; align-items: center;
+      justify-content: space-between; gap: 16px; width: 100%; max-width: 500px;
+    }
+    .install-prompt {
+      font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--code-text);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .dollar { color: #a6e3a1; user-select: none; }
+    .cmd { color: #89dceb; } .arg { color: #cba6f7; } .path { color: #f9e2af; }
+    .copy-btn {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
+      color: #cdd6f4; padding: 6px 12px; border-radius: 6px;
+      font-size: 12px; font-family: 'JetBrains Mono', monospace; cursor: pointer;
+      white-space: nowrap; flex-shrink: 0; transition: background 0.15s;
+    }
+    .copy-btn:hover { background: rgba(255,255,255,0.14); }
+    .copy-btn.copied { color: #a6e3a1; border-color: rgba(166,227,161,0.4); }
+    .install-sub { font-size: 13px; color: var(--muted); }
+    .install-sub a { color: var(--accent); font-weight: 500; }
+
+    /* STATS */
+    .stats { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 52px; }
+    .stat .num { font-size: 1.6rem; font-weight: 900; display: block; }
+    .stat .lbl { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+
+    .divider { height: 1px; background: var(--border); max-width: 1100px; margin: 0 auto; }
+
+    /* SECTIONS */
+    section { max-width: 1100px; margin: 0 auto; padding: 72px 24px; }
+    .sec-label { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .sec-title { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 800; letter-spacing: -0.025em; margin-bottom: 14px; }
+    .sec-desc { font-size: 1.05rem; color: var(--muted); max-width: 520px; line-height: 1.6; }
+
+    /* HOW IT WORKS */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; margin-top: 48px; }
+    .step { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; }
+    .step-num {
+      width: 30px; height: 30px; background: var(--accent-light); color: var(--accent);
+      font-size: 12px; font-weight: 800; border-radius: 7px;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 14px;
+    }
+    .step h3 { font-size: 14px; font-weight: 700; margin-bottom: 7px; }
+    .step p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+    .step code { background: #f3f4f6; padding: 1px 5px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--accent); }
+
+    /* SKILLS TABLE */
+    .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-top: 32px; }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      background: #f9fafb; padding: 11px 20px; text-align: left;
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--muted); border-bottom: 1px solid var(--border);
+    }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #f9fafb; }
+    td { padding: 13px 20px; font-size: 13.5px; vertical-align: middle; }
+    .sk { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--accent); font-weight: 500; }
+    .sk-desc { color: var(--muted); max-width: 380px; font-size: 13px; }
+    .tag { display: inline-block; font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 100px; }
+    .t-pro { background: #ede9fe; color: #6d28d9; }
+    .t-std { background: #f0fdf4; color: #166534; }
+    .t-r { background: #eff6ff; color: #1d4ed8; }
+    .t-a { background: #fdf4ff; color: #86198f; }
+
+    /* CLI DEMO */
+    .cli-wrap { background: var(--code-bg); border-radius: var(--radius-lg); overflow: hidden; margin-top: 40px; }
+    .cli-tabs { display: flex; background: rgba(0,0,0,0.25); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0 16px; }
+    .cli-tab { padding: 11px 14px; font-size: 12.5px; font-family: 'JetBrains Mono', monospace; color: rgba(205,214,244,0.35); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; }
+    .cli-tab.active { color: var(--code-text); border-bottom-color: #8b5cf6; }
+    .cli-pane { display: none; padding: 24px; }
+    .cli-pane.active { display: block; }
+    .cl { font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.75; color: var(--code-text); }
+    .cl .c { color: #585b70; } .cl .g { color: #a6e3a1; } .cl .b { color: #89dceb; }
+    .cl .y { color: #f9e2af; } .cl .p { color: #cba6f7; } .cl .$ { color: #a6e3a1; user-select: none; }
+
+    /* INSTALL METHODS */
+    .i-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 40px; }
+    .i-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; }
+    .i-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .rec { background: var(--green-light); color: var(--green); font-size: 10px; font-weight: 700; padding: 1px 7px; border-radius: 100px; }
+    .i-card pre { background: var(--code-bg); border-radius: 8px; padding: 14px; overflow-x: auto; }
+    .i-card pre code { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--code-text); line-height: 1.65; }
+    .i-card pre code .g { color: #a6e3a1; } .i-card pre code .p { color: #cba6f7; } .i-card pre code .c { color: #585b70; }
+
+    /* USE CASES */
+    .u-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; margin-top: 40px; }
+    .u-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; }
+    .u-icon { font-size: 26px; margin-bottom: 10px; display: block; }
+    .u-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 7px; }
+    .u-card p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+    .u-card code { background: #f3f4f6; padding: 1px 5px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); }
+
+    /* CTA */
+    .cta { background: var(--text); color: #fff; text-align: center; padding: 80px 24px; }
+    .cta h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 14px; }
+    .cta p { color: rgba(255,255,255,0.55); margin-bottom: 40px; font-size: 1.05rem; }
+    .cta-box {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-lg); padding: 16px 20px;
+      display: inline-flex; align-items: center; gap: 16px;
+      font-family: 'JetBrains Mono', monospace; font-size: 13.5px; color: rgba(255,255,255,0.85);
+    }
+    .cta-copy { background: #fff; color: var(--text); border: none; padding: 7px 14px; border-radius: 6px; font-size: 12px; font-family: 'JetBrains Mono', monospace; font-weight: 700; cursor: pointer; flex-shrink: 0; }
+
+    /* FOOTER */
+    .foot-wrap { max-width: 1100px; margin: 0 auto; padding: 28px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; border-top: 1px solid var(--border); }
+    .foot-logo { font-size: 14px; font-weight: 800; }
+    .foot-links { display: flex; gap: 20px; font-size: 13px; color: var(--muted); }
+    .foot-links a:hover { color: var(--text); }
+
+    @media (max-width: 600px) {
+      .nav-links .hm { display: none; }
+      thead th:nth-child(3), td:nth-child(3),
+      thead th:nth-child(4), td:nth-child(4) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><span class="dot"></span> landing-page-skills</div>
+  <div class="nav-links">
+    <a href="#skills" class="hm">Skills</a>
+    <a href="#install" class="hm">Install</a>
+    <a href="https://github.com/moose-lab/landing-page-marketing-skills" target="_blank" class="nav-gh">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12c0-5.523-4.477-10-10-10z"/></svg>
+      GitHub
+    </a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">
+    <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+    Now with Kling 3.0 Omni
+  </div>
+  <h1>The AI Video Skill<br/>Your <span>Landing Page</span> Needs</h1>
+  <p>Generate multi-scene Kling 3.0 demos, hot video types, and a filterable gallery — with one CLI command. Built for Claude Code agents and technical founders.</p>
+
+  <div class="install-wrap">
+    <div class="install-box">
+      <div class="install-prompt">
+        <span class="dollar">$</span>
+        <span><span class="cmd">npx</span> skills add <span class="path">moose-lab/landing-page-marketing-skills</span></span>
+      </div>
+      <button class="copy-btn" onclick="cp(this,'npx skills add moose-lab/landing-page-marketing-skills')">Copy</button>
+    </div>
+    <p class="install-sub">Installs to your Claude Code project · <a href="#install">More options ↓</a></p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><span class="num">7</span><span class="lbl">Scene Presets</span></div>
+    <div class="stat"><span class="num">Kling 3.0</span><span class="lbl">Omni Model</span></div>
+    <div class="stat"><span class="num">1 cmd</span><span class="lbl">Generates All</span></div>
+    <div class="stat"><span class="num">Node.js</span><span class="lbl">Gallery Page</span></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="sec-label">How it works</div>
+  <h2 class="sec-title">Install skill. Run CLI. Ship demo videos.</h2>
+  <p class="sec-desc">One skill gives your agent everything it needs to go from zero to a live video demo gallery — prompts, API calls, and landing page all included.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Install the skill</h3>
+      <p>Run <code>npx skills add moose-lab/landing-page-marketing-skills</code>. Drops into <code>.claude/skills/</code> and Claude Code picks it up instantly — no config needed.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Tell Claude to generate demos</h3>
+      <p>Say "generate video demos for my landing page." Claude reads the skill, picks scenes, writes prompts, and runs the CLI — fully autonomous.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Kling 3.0 renders the scenes</h3>
+      <p>The CLI submits multi-shot payloads to Kling 3.0 Omni via PiAPI. Each scene has fine-tuned prompts, durations, aspect ratio, and native audio.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h3>Gallery live on your page</h3>
+      <p>Video URLs are saved to a manifest JSON. The Node.js server reads it and renders a filterable gallery automatically at <code>localhost:3000</code>.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS TABLE -->
+<section id="skills">
+  <div class="sec-label">Available Skills</div>
+  <h2 class="sec-title">7 hot video scene presets</h2>
+  <p class="sec-desc">Every preset is fine-tuned with multi-shot prompts, cinematography direction, and optimal settings for Kling 3.0 pro mode.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Scene Key</th>
+          <th>Description</th>
+          <th>Mode</th>
+          <th>Dur</th>
+          <th>Ratio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="sk">product_showcase</span></td>
+          <td class="sk-desc">2-shot product reveal — studio float + macro detail. For ecommerce & SaaS tools.</td>
+          <td><span class="tag t-pro">pro</span></td><td>8s</td><td><span class="tag t-r">16:9</span></td>
+        </tr>
+        <tr>
+          <td><span class="sk">cinematic_landscape</span></td>
+          <td class="sk-desc">3-shot epic hero video — aerial, forest, peak. Native audio. For brand hero sections.</td>
+          <td><span class="tag t-pro">pro</span></td><td>12s</td><td><span class="tag t-r">16:9</span> <span class="tag t-a">🎵</span></td>
+        </tr>
+        <tr>
+          <td><span class="sk">lifestyle_vertical</span></td>
+          <td class="sk-desc">2-shot social reel — cafe scene to app UI reveal. For Instagram, TikTok, Shorts.</td>
+          <td><span class="tag t-pro">pro</span></td><td>8s</td><td><span class="tag t-r">9:16</span> <span class="tag t-a">🎵</span></td>
+        </tr>
+        <tr>
+          <td><span class="sk">before_after</span></td>
+          <td class="sk-desc">Blurry/pixelated input → crystal 4K output. Built for upscalers and AI video tools.</td>
+          <td><span class="tag t-pro">pro</span></td><td>10s</td><td><span class="tag t-r">16:9</span></td>
+        </tr>
+        <tr>
+          <td><span class="sk">viral_hook</span></td>
+          <td class="sk-desc">Single punchy attention-grabber. Slow-mo amazement close-up. For ad hooks.</td>
+          <td><span class="tag t-std">std</span></td><td>5s</td><td><span class="tag t-r">9:16</span> <span class="tag t-a">🎵</span></td>
+        </tr>
+        <tr>
+          <td><span class="sk">explainer_multishot</span></td>
+          <td class="sk-desc">3-shot problem → discovery → resolution arc. For SaaS onboarding pages.</td>
+          <td><span class="tag t-pro">pro</span></td><td>15s</td><td><span class="tag t-r">16:9</span> <span class="tag t-a">🎵</span></td>
+        </tr>
+        <tr>
+          <td><span class="sk">ecommerce_fashion</span></td>
+          <td class="sk-desc">2-shot apparel showcase — model walk + fabric detail close-up. For fashion brands.</td>
+          <td><span class="tag t-pro">pro</span></td><td>8s</td><td><span class="tag t-r">9:16</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CLI DEMO -->
+<section>
+  <div class="sec-label">CLI Demo</div>
+  <h2 class="sec-title">Everything from your terminal</h2>
+  <p class="sec-desc">Claude Code runs this for you, or you can run it yourself. Dry-run first to tune prompts, then generate with one command.</p>
+  <div class="cli-wrap">
+    <div class="cli-tabs">
+      <div class="cli-tab active" onclick="tab(0)">generate all</div>
+      <div class="cli-tab" onclick="tab(1)">list scenes</div>
+      <div class="cli-tab" onclick="tab(2)">dry run</div>
+      <div class="cli-tab" onclick="tab(3)">serve page</div>
+    </div>
+    <div class="cli-pane active">
+      <div class="cl"><span class="c"># Set API key once</span></div>
+      <div class="cl"><span class="$">$</span> <span class="b">export</span> <span class="y">PIAPI_KEY</span>=your_key_here</div>
+      <div class="cl">&nbsp;</div>
+      <div class="cl"><span class="c"># Generate all 7 scenes</span></div>
+      <div class="cl"><span class="$">$</span> <span class="b">node</span> cli/index.js <span class="g">generate-demo</span> --model <span class="p">kling3</span> --scenes <span class="y">all</span></div>
+      <div class="cl">&nbsp;</div>
+      <div class="cl"><span class="g">🎬 videoskills — generate-demo</span></div>
+      <div class="cl"><span class="c">   Generating 7 scenes with Kling 3.0 Omni...</span></div>
+      <div class="cl">&nbsp;</div>
+      <div class="cl">  ▶ [product_showcase] <span class="y">Product Showcase</span></div>
+      <div class="cl">    Task ID: <span class="p">n70abc123kling3</span>  ⏳ processing...</div>
+      <div class="cl">    ✅ <span class="g">https://cdn.kling.ai/output/demo-product.mp4</span></div>
+      <div class="cl">&nbsp;</div>
+      <div class="cl">  ▶ [before_after] <span class="y">Before / After Transform</span></div>
+      <div class="cl">    ✅ <span class="g">https://cdn.kling.ai/output/demo-before-after.mp4</span></div>
+      <div class="cl"><span class="c">  ... 5 more completed</span></div>
+      <div class="cl">&nbsp;</div>
+      <div class="cl">✅ <span class="g">Manifest → public/demos/kling3-demos.json</span></div>
+    </div>
+    <div class="cli-pane">
+      <div class="cl"><span class="$">$</span> <span class="b">node</span> cli/index.js <span class="g">list-scenes</span> --model <span class="p">kling3</span></div>
+      <div class="cl">&nbsp;</div>
+      <div class="cl"><span class="g">🎬 Available scenes for model: kling3</span></div>
+      <div class="cl">&nbsp;</div>
+      <div class="cl"><span class="y">Key                     Label                  Mode  Dur  Ratio       Shots</span></div>
+      <div class="cl"><span class="c">──────────────────────────────────────────────────────────────────────</span></div>
+      <div class="cl"><span class="p">product_showcase</span>        Product Showcase       pro   8s   16:9        2 shots</div>
+      <div class="cl"><span class="p">cinematic_landscape</span>     Cinematic Landscape    pro   12s  16:9 🎵     3 shots</div>
+      <div class="cl"><span class="p">lifestyle_vertical</span>      Lifestyle / Social     pro   8s   9:16 🎵     2 shots</div>
+      <div class="cl"><span class="p">before_after</span>            Before / After         pro   10s  16:9        2 shots</div>
+      <div class="cl"><span class="p">viral_hook</span>              Viral Hook (Short)     std   5s   9:16 🎵     1 shot</div>
+      <div class="cl"><span class="p">explainer_multishot</span>     Product Explainer      pro   15s  16:9 🎵     3 shots</div>
+      <div class="cl"><span class="p">ecommerce_fashion</span>       Fashion / Apparel      pro   8s   9:16        2 shots</div>
+    </div>
+    <div class="cli-pane">
+      <div class="cl"><span class="c"># Preview prompts without spending API credits</span></div>
+      <div class="cl"><span class="$">$</span> <span class="b">node</span> cli/index.js <span class="g">generate-demo</span> --model <span class="p">kling3</span> --dry-run</div>
+      <div class="cl">&nbsp;</div>
+      <div class="cl">  ▶ [product_showcase] Product Showcase</div>
+      <div class="cl">    Settings: { mode: <span class="g">"pro"</span>, duration: <span class="y">8</span>, aspect_ratio: <span class="g">"16:9"</span>, cfg_scale: <span class="y">0.6</span> }</div>
+      <div class="cl">    Shots:</div>
+      <div class="cl">      Shot 1: <span class="g">"Elegant product floating on minimal white studio background,</span></div>
+      <div class="cl">               <span class="g">slow 360-degree rotation, soft rim lighting..."</span> (4s)</div>
+      <div class="cl">      Shot 2: <span class="g">"Close-up product details, macro lens bokeh, premium texture..."</span> (4s)</div>
+      <div class="cl">&nbsp;</div>
+      <div class="cl"><span class="c">  → Edit scene-presets.json to fine-tune prompts, then generate</span></div>
+    </div>
+    <div class="cli-pane">
+      <div class="cl"><span class="c"># After generating, serve the gallery page</span></div>
+      <div class="cl"><span class="$">$</span> <span class="b">node</span> landing/server.js</div>
+      <div class="cl">&nbsp;</div>
+      <div class="cl">🚀 <span class="g">Landing page running at http://localhost:3000</span></div>
+      <div class="cl">&nbsp;</div>
+      <div class="cl"><span class="c"># Gallery auto-loads from public/demos/kling3-demos.json</span></div>
+      <div class="cl"><span class="c"># Filterable by scene type, plays inline video</span></div>
+      <div class="cl"><span class="c"># REST API: GET /api/demos/kling3 → manifest JSON</span></div>
+      <div class="cl">&nbsp;</div>
+      <div class="cl"><span class="c"># Or ask Claude Code directly:</span></div>
+      <div class="cl"><span class="c"># "Generate video demos and show them on my landing page"</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- USE CASES -->
+<section>
+  <div class="sec-label">Use Cases</div>
+  <h2 class="sec-title">Built for builders who ship</h2>
+  <div class="u-grid">
+    <div class="u-card"><span class="u-icon">🚀</span><h3>SaaS Landing Pages</h3><p>Replace static screenshots with AI cinematic demos. The explainer and product showcase presets are tuned for hero sections.</p></div>
+    <div class="u-card"><span class="u-icon">✨</span><h3>AI Video & Upscaler Tools</h3><p>The <code>before_after</code> preset was built for tools like A1D.ai — degraded input transforming to 4K output in one scene.</p></div>
+    <div class="u-card"><span class="u-icon">📱</span><h3>Social Media Campaigns</h3><p>Vertical lifestyle reels and viral hooks for Instagram, TikTok, Shorts — with native audio and multi-shot storyboards.</p></div>
+    <div class="u-card"><span class="u-icon">🛍️</span><h3>Ecommerce & Fashion</h3><p>Studio product reveals and apparel showcases in pro mode. Fine-tuned for tactile quality and clean editorial presentation.</p></div>
+    <div class="u-card"><span class="u-icon">🤖</span><h3>Claude Code Agents</h3><p>Install once. Claude Code can generate videos, update the manifest, and embed them on your page — fully autonomous.</p></div>
+    <div class="u-card"><span class="u-icon">⚡</span><h3>Custom Scene Tuning</h3><p>Edit <code>scene-presets.json</code> to define your own multi-shot scenes with custom prompts, durations, and CFG settings.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- INSTALL -->
+<section id="install">
+  <div class="sec-label">Installation</div>
+  <h2 class="sec-title">Multiple ways to install</h2>
+  <p class="sec-desc">Works with Claude Code, Cursor, Codex, OpenCode, and 35+ agents via the open skills ecosystem.</p>
+  <div class="i-grid">
+    <div class="i-card">
+      <h3>npx skills <span class="rec">Recommended</span></h3>
+      <pre><code><span class="c"># Install all video skills</span>
+<span class="g">npx</span> skills add moose-lab/landing-page-marketing-skills
+
+<span class="c"># Install specific skill</span>
+<span class="g">npx</span> skills add moose-lab/landing-page-marketing-skills <span class="p">--skill kling3-video-demos</span>
+
+<span class="c"># Claude Code only</span>
+<span class="g">npx</span> skills add moose-lab/landing-page-marketing-skills <span class="p">-a claude-code</span></code></pre>
+    </div>
+    <div class="i-card">
+      <h3>Claude Code Plugin</h3>
+      <pre><code><span class="c"># Via plugin marketplace</span>
+<span class="g">/plugin</span> marketplace add moose-lab/landing-page-marketing-skills
+
+<span class="c"># Install skill</span>
+<span class="g">/plugin</span> install video-skills</code></pre>
+    </div>
+    <div class="i-card">
+      <h3>Clone & Copy</h3>
+      <pre><code><span class="g">git</span> clone https://github.com/moose-lab/landing-page-marketing-skills.git
+<span class="g">cp</span> -r videoskills/skills/* .claude/skills/</code></pre>
+    </div>
+    <div class="i-card">
+      <h3>Git Submodule</h3>
+      <pre><code><span class="g">git</span> submodule add \
+  https://github.com/moose-lab/landing-page-marketing-skills.git \
+  .claude/videoskills</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta">
+  <h2>Start generating video demos today</h2>
+  <p>One command. Seven scene presets. Kling 3.0 quality. Your landing page — upgraded.</p>
+  <div class="cta-box">
+    <span>$ npx skills add moose-lab/landing-page-marketing-skills</span>
+    <button class="cta-copy" onclick="cp(this,'npx skills add moose-lab/landing-page-marketing-skills')">Copy</button>
+  </div>
+</div>
+
+<div class="foot-wrap">
+  <div class="foot-logo">video-skills</div>
+  <div class="foot-links">
+    <a href="https://github.com/moose-lab/landing-page-marketing-skills" target="_blank">GitHub</a>
+    <a href="https://piapi.ai" target="_blank">PiAPI</a>
+    <a href="https://github.com/vercel-labs/skills" target="_blank">npx skills</a>
+    <a href="#skills">Scenes</a>
+  </div>
+</div>
+
+<script>
+function cp(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    const o = btn.textContent; btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = o; btn.classList.remove('copied'); }, 1800);
+  });
+}
+function tab(i) {
+  document.querySelectorAll('.cli-tab').forEach((t,j) => t.classList.toggle('active', j===i));
+  document.querySelectorAll('.cli-pane').forEach((p,j) => p.classList.toggle('active', j===i));
+}
+</script>
+</body>
+</html>

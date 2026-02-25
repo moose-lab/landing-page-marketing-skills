@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "name": "videoskills",
+    "description": "AI video generation skills for Claude Code. Generate multi-scene Kling 3.0 demos, hot video types, and landing page galleries with one CLI command.",
+    "version": "1.0.0",
+    "author": "videoskills",
+    "homepage": "https://moose-lab.github.io/landing-page-marketing-skills",
+    "repository": "https://github.com/moose-lab/landing-page-marketing-skills",
+    "pluginRoot": "./skills"
+  },
+  "plugins": [
+    {
+      "name": "kling3-video-demos",
+      "source": "kling3",
+      "description": "Generate multi-scene AI video demos with Kling 3.0 Omni. 7 hot scene presets: product showcase, cinematic landscape, lifestyle reel, viral hook, explainer, fashion, before/after. Includes CLI + Node.js landing page gallery.",
+      "skills": ["./skills/kling3"]
+    }
+  ]
+}
