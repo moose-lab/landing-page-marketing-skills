@@ -1,5 +1,5 @@
 {
-  "name": "videoskills",
+  "name": "landing-page-marketing-skills",
   "version": "1.0.0",
   "description": "AI video generation skills for Claude Code. Generate multi-scene Kling 3.0 demos with one CLI command.",
   "type": "module",
@@ -7,19 +7,20 @@
     "videoskills": "./cli/index.js"
   },
   "scripts": {
+    "build": "echo 'Static site — no build step needed'",
+    "dev": "node landing/server.js",
     "generate": "node cli/index.js generate-demo --model kling3 --scenes all",
     "generate:dry": "node cli/index.js generate-demo --model kling3 --scenes all --dry-run",
     "list": "node cli/index.js list-scenes --model kling3",
-    "serve": "node landing/server.js",
-    "dev": "node cli/index.js generate-demo --model kling3 --dry-run && node landing/server.js"
+    "serve": "node landing/server.js"
   },
   "dependencies": {
     "commander": "^12.0.0"
   },
   "keywords": ["ai","video","kling","claude-code","agent-skills","skills","video-generation","landing-page","demo","cli"],
-  "files": ["skills/","cli/","landing/","public/",".claude-plugin/"],
+  "files": ["skills/","cli/","landing/","public/","api/",".claude-plugin/","vercel.json"],
   "engines": { "node": ">=18" },
   "repository": { "type": "git", "url": "https://github.com/moose-lab/landing-page-marketing-skills.git" },
-  "homepage": "https://moose-lab.github.io/landing-page-marketing-skills",
+  "homepage": "https://landing-page-marketing-skills.vercel.app",
   "license": "MIT"
 }
