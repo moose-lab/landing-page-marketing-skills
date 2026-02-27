@@ -225,6 +225,27 @@
     .foot-links a { color: var(--dim); }
     .foot-links a:hover { color: var(--green); }
 
+    /* GALLERY TYPE TABS */
+    .gallery-type-tabs { display: flex; gap: 0; margin-top: 20px; margin-bottom: 4px; }
+    .type-tab {
+      background: none; border: 1px solid var(--border); color: var(--muted);
+      padding: 8px 20px; font-family: var(--font); font-size: 12px; font-weight: 600;
+      cursor: pointer; transition: all 0.15s;
+    }
+    .type-tab:first-child { border-right: none; }
+    .type-tab:hover { color: var(--green); border-color: var(--green); }
+    .type-tab.active { border-color: var(--green); background: var(--green); color: #000; }
+
+    /* IMAGE CARD */
+    .g-img-wrap { position: relative; background: var(--surface); }
+    .g-img-wrap img { width: 100%; display: block; height: auto; }
+    .g-cat-badge {
+      display: inline-block; font-size: 9px; font-weight: 700; padding: 1px 6px;
+      border: 1px solid var(--purple); color: var(--purple); margin-right: 4px;
+    }
+    .g-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
+    .g-tags .tag { font-size: 9px; border-color: var(--dim); color: var(--muted); }
+
     @media (max-width: 640px) {
       .nav-links .hm { display: none; }
       .hero h1 { font-size: 1.8rem; }
@@ -237,7 +258,7 @@
 <body>
 
 <nav>
-  <div class="nav-logo"><span class="dot">></span> video-skills</div>
+  <div class="nav-logo"><span class="dot">></span> asset-skills</div>
   <div class="nav-links">
     <a href="#skills" class="hm">Scenes</a>
     <a href="#gallery" class="hm">Gallery</a>
@@ -250,9 +271,9 @@
 </nav>
 
 <div class="hero">
-  <div class="hero-badge">Kling 3.0 Omni</div>
-  <h1>AI Video Skills for<br/><span class="accent">Claude Code</span></h1>
-  <p>10 commercial video presets. Multi-prompt cinematography. One CLI command generates ecommerce, fashion, anime, drama, food, cyberpunk, luxury, fitness, and beauty videos.</p>
+  <div class="hero-badge">Kling 3.0 + Nano Banana 2</div>
+  <h1>AI Asset Skills for<br/><span class="accent">Claude Code</span></h1>
+  <p>10 video presets + 12 image presets. Multi-prompt cinematography and commercial image generation. One CLI command generates ecommerce, fashion, lifestyle, hero, and product assets.</p>
 
   <div class="install-cmd">
     <code><span class="dollar">$</span> npx skills add moose-lab/landing-page-marketing-skills</code>
@@ -261,10 +282,10 @@
   <p class="install-sub">Installs to .claude/skills/ &mdash; <a href="#install">more options</a></p>
 
   <div class="stats">
-    <div class="stat"><span class="num">10</span><span class="lbl">Scene Presets</span></div>
-    <div class="stat"><span class="num">Kling 3.0</span><span class="lbl">Omni Model</span></div>
+    <div class="stat"><span class="num">10+12</span><span class="lbl">Presets</span></div>
+    <div class="stat"><span class="num">2 Models</span><span class="lbl">Video + Image</span></div>
     <div class="stat"><span class="num">1 cmd</span><span class="lbl">Generates All</span></div>
-    <div class="stat"><span class="num">Multi-prompt</span><span class="lbl">Cinematography</span></div>
+    <div class="stat"><span class="num">Multi-Modal</span><span class="lbl">Assets</span></div>
   </div>
 </div>
 
@@ -459,8 +480,12 @@
 <!-- GALLERY -->
 <section id="gallery">
   <div class="sec-label">Demo Gallery</div>
-  <h2 class="sec-title">Generated video demos</h2>
-  <p class="sec-desc">Real outputs from Kling 3.0. Each card shows the prompt used — fully reproducible.</p>
+  <h2 class="sec-title">Generated asset demos</h2>
+  <p class="sec-desc">Real outputs from Kling 3.0 and Nano Banana 2. Each card shows the prompt used — fully reproducible.</p>
+  <div class="gallery-type-tabs" id="galleryTypeTabs">
+    <button class="type-tab active" onclick="switchGalleryType('video')">Videos (Kling 3.0)</button>
+    <button class="type-tab" onclick="switchGalleryType('image')">Images (Nano Banana 2)</button>
+  </div>
   <div class="gallery-filters" id="galleryFilters"></div>
   <div id="galleryGrid"></div>
 </section>
@@ -518,8 +543,8 @@
 
 <!-- CTA -->
 <div class="cta">
-  <h2>Start generating video demos</h2>
-  <p>One command. Ten commercial presets. Kling 3.0 quality.</p>
+  <h2>Start generating AI assets</h2>
+  <p>One command. 22 presets. Kling 3.0 video + Nano Banana 2 images.</p>
   <div class="cta-box">
     <code><span style="color:var(--green)">$</span> npx skills add moose-lab/landing-page-marketing-skills</code>
     <button class="cta-copy" onclick="cp(this,'npx skills add moose-lab/landing-page-marketing-skills')">copy</button>
@@ -527,7 +552,7 @@
 </div>
 
 <div class="foot-wrap">
-  <div class="foot-logo">> video-skills</div>
+  <div class="foot-logo">> asset-skills</div>
   <div class="foot-links">
     <a href="https://github.com/moose-lab/landing-page-marketing-skills" target="_blank">GitHub</a>
     <a href="https://github.com/moose-lab/landing-page-marketing-skills#readme" target="_blank">Docs</a>
@@ -549,10 +574,27 @@ function tab(i) {
   document.querySelectorAll('.cli-pane').forEach(function(p,j) { p.classList.toggle('active', j===i); });
 }
 
-// Gallery: fetch manifest and render video cards with safe DOM construction
-(async function loadGallery() {
+var currentGalleryType = 'video';
+
+function switchGalleryType(type) {
+  currentGalleryType = type;
+  document.querySelectorAll('.type-tab').forEach(function(b) {
+    b.classList.toggle('active', b.textContent.toLowerCase().includes(type));
+  });
+  if (type === 'video') {
+    loadVideoGallery();
+  } else {
+    loadImageGallery();
+  }
+}
+
+// VIDEO GALLERY
+async function loadVideoGallery() {
   var grid = document.getElementById('galleryGrid');
   var filtersEl = document.getElementById('galleryFilters');
+  filtersEl.replaceChildren();
+  grid.replaceChildren();
+
   try {
     var res = await fetch('/api/demos/kling3');
     if (!res.ok) throw new Error('no manifest');
@@ -565,18 +607,18 @@ function tab(i) {
       var btn = document.createElement('button');
       btn.className = 'g-filter' + (i === 0 ? ' active' : '');
       btn.textContent = t === 'all' ? 'All' : t;
-      btn.addEventListener('click', function() { filterGallery(t); });
+      btn.addEventListener('click', function() { filterVideoGallery(t); });
       filtersEl.appendChild(btn);
     });
 
-    window._galleryDemos = demos;
-    renderGallery(demos);
+    window._videoDemos = demos;
+    renderVideoGallery(demos);
   } catch(e) {
     grid.className = '';
     var empty = document.createElement('div');
     empty.className = 'g-empty';
     var p1 = document.createElement('p');
-    p1.textContent = 'No demos generated yet.';
+    p1.textContent = 'No video demos generated yet.';
     var p2 = document.createElement('p');
     p2.style.marginTop = '8px';
     var code = document.createElement('code');
@@ -585,19 +627,19 @@ function tab(i) {
     empty.append(p1, p2);
     grid.appendChild(empty);
   }
-})();
+}
 
-function filterGallery(ratio) {
+function filterVideoGallery(ratio) {
   document.querySelectorAll('.g-filter').forEach(function(b) {
     b.classList.toggle('active', b.textContent === (ratio === 'all' ? 'All' : ratio));
   });
   var filtered = ratio === 'all'
-    ? window._galleryDemos
-    : window._galleryDemos.filter(function(d) { return (d.settings && d.settings.aspect_ratio || '16:9') === ratio; });
-  renderGallery(filtered);
+    ? window._videoDemos
+    : window._videoDemos.filter(function(d) { return (d.settings && d.settings.aspect_ratio || '16:9') === ratio; });
+  renderVideoGallery(filtered);
 }
 
-function renderGallery(demos) {
+function renderVideoGallery(demos) {
   var grid = document.getElementById('galleryGrid');
   grid.className = 'g-grid';
   grid.replaceChildren();
@@ -610,12 +652,12 @@ function renderGallery(demos) {
 
     var card = document.createElement('div');
     card.className = 'g-card';
-    card.dataset.ratio = ratio;
 
     var wrap = document.createElement('div');
     wrap.className = 'g-video-wrap' + (isPortrait ? ' portrait' : '');
     var video = document.createElement('video');
     video.src = d.video_url;
+    if (d.thumbnail_url) video.poster = '/' + d.thumbnail_url;
     video.controls = true;
     video.muted = true;
     video.loop = true;
@@ -662,6 +704,131 @@ function renderGallery(demos) {
     grid.appendChild(card);
   });
 }
+
+// IMAGE GALLERY
+async function loadImageGallery() {
+  var grid = document.getElementById('galleryGrid');
+  var filtersEl = document.getElementById('galleryFilters');
+  filtersEl.replaceChildren();
+  grid.replaceChildren();
+
+  try {
+    var res = await fetch('/api/demos/nano-banana-2');
+    if (!res.ok) throw new Error('no manifest');
+    var manifest = await res.json();
+    var demos = manifest.demos.filter(function(d) { return d.status === 'completed' && (d.image_url || d.local_path); });
+    if (demos.length === 0) throw new Error('empty');
+
+    var cats = ['all'].concat([...new Set(demos.map(function(d) { return d.category || 'uncategorized'; }))]);
+    cats.forEach(function(c, i) {
+      var btn = document.createElement('button');
+      btn.className = 'g-filter' + (i === 0 ? ' active' : '');
+      btn.textContent = c === 'all' ? 'All' : c.replace(/_/g, ' ');
+      btn.addEventListener('click', function() { filterImageGallery(c); });
+      filtersEl.appendChild(btn);
+    });
+
+    window._imageDemos = demos;
+    renderImageGallery(demos);
+  } catch(e) {
+    grid.className = '';
+    var empty = document.createElement('div');
+    empty.className = 'g-empty';
+    var p1 = document.createElement('p');
+    p1.textContent = 'No image assets generated yet.';
+    var p2 = document.createElement('p');
+    p2.style.marginTop = '8px';
+    var code = document.createElement('code');
+    code.textContent = 'npm run generate:images';
+    p2.append('Run ', code, ' to generate images.');
+    empty.append(p1, p2);
+    grid.appendChild(empty);
+  }
+}
+
+function filterImageGallery(cat) {
+  document.querySelectorAll('.g-filter').forEach(function(b) {
+    var label = cat === 'all' ? 'All' : cat.replace(/_/g, ' ');
+    b.classList.toggle('active', b.textContent === label);
+  });
+  var filtered = cat === 'all'
+    ? window._imageDemos
+    : window._imageDemos.filter(function(d) { return d.category === cat; });
+  renderImageGallery(filtered);
+}
+
+function renderImageGallery(demos) {
+  var grid = document.getElementById('galleryGrid');
+  grid.className = 'g-grid';
+  grid.replaceChildren();
+
+  demos.forEach(function(d) {
+    var card = document.createElement('div');
+    card.className = 'g-card';
+
+    var wrap = document.createElement('div');
+    wrap.className = 'g-img-wrap';
+    var img = document.createElement('img');
+    img.src = d.local_path ? '/demos/' + d.local_path : d.image_url;
+    img.alt = d.label;
+    img.loading = 'lazy';
+    wrap.appendChild(img);
+    var badge = document.createElement('span');
+    badge.className = 'g-badge';
+    var settings = d.settings || {};
+    badge.textContent = (settings.aspect_ratio || '—') + ' / ' + (settings.resolution || '2k');
+    wrap.appendChild(badge);
+    card.appendChild(wrap);
+
+    var info = document.createElement('div');
+    info.className = 'g-info';
+    var h4 = document.createElement('h4');
+    h4.textContent = d.label;
+    info.appendChild(h4);
+
+    var meta = document.createElement('div');
+    meta.className = 'g-meta';
+    var catBadge = document.createElement('span');
+    catBadge.className = 'g-cat-badge';
+    catBadge.textContent = (d.category || '').replace(/_/g, ' ');
+    meta.appendChild(catBadge);
+    var fmtTag = document.createElement('span');
+    fmtTag.className = 'tag t-std';
+    fmtTag.textContent = settings.output_format || 'png';
+    meta.appendChild(fmtTag);
+    info.appendChild(meta);
+
+    // Tags
+    if (d.tags && d.tags.length > 0) {
+      var tagsDiv = document.createElement('div');
+      tagsDiv.className = 'g-tags';
+      d.tags.forEach(function(t) {
+        var tag = document.createElement('span');
+        tag.className = 'tag t-r';
+        tag.textContent = t;
+        tagsDiv.appendChild(tag);
+      });
+      info.appendChild(tagsDiv);
+    }
+
+    var lbl = document.createElement('div');
+    lbl.className = 'g-prompt-label';
+    lbl.style.marginTop = '8px';
+    lbl.textContent = 'Prompt (reproducible)';
+    info.appendChild(lbl);
+
+    var prompt = document.createElement('div');
+    prompt.className = 'g-prompt';
+    prompt.textContent = d.prompt || '—';
+    info.appendChild(prompt);
+
+    card.appendChild(info);
+    grid.appendChild(card);
+  });
+}
+
+// Initial load
+loadVideoGallery();
 </script>
 </body>
 </html>

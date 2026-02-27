@@ -6,6 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const MODEL_PRESET_MAP = {
   kling3: path.resolve(__dirname, '../../skills/kling3/scene-presets.json'),
+  'nano-banana-2': path.resolve(__dirname, '../../skills/nano-banana-2/asset-presets.json'),
 };
 
 /**

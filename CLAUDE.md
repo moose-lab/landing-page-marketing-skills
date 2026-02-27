@@ -1,6 +1,6 @@
 # landing-page-marketing-skills
 
-AI video generation skills for Claude Code. Generate multi-scene Kling 3.0 video demos via WaveSpeed.ai and embed them on a landing page — with one CLI command.
+AI asset generation skills for Claude Code. Generate multi-scene Kling 3.0 video demos and Nano Banana 2 images via WaveSpeed.ai — with one CLI command.
 
 ## Quick Commands
 
@@ -27,6 +27,21 @@ npm run serve
 
 # Update skills from remote
 node cli/index.js update-skills
+
+# List image presets
+npm run list:images
+
+# Generate images (dry run)
+npm run generate:images:dry
+
+# Generate images
+npm run generate:images
+
+# Analyze HTML for asset slots
+node cli/index.js analyze-assets --input ./public/index.html
+
+# Smart video covers
+node cli/index.js smart-cover
 ```
 
 ## Install This Skill via npx
@@ -49,5 +64,6 @@ public/               ← Static assets + demo gallery HTML + video gallery UI
 ## Available Skills
 
 - `kling3-video-demos` — Generate multi-scene AI video demos with Kling 3.0 via WaveSpeed.ai
+- `nano-banana-2-image-assets` — Generate commercial AI images with Nano Banana 2 for landing pages and marketing
 
 See `skills/kling3/SKILL.md` for full documentation including the agent automation workflow.

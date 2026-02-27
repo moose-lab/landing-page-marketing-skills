@@ -1,23 +1,27 @@
 {
   "name": "landing-page-marketing-skills",
-  "version": "2.0.0",
-  "description": "AI video generation skills for Claude Code. Generate multi-scene Kling 3.0 demos via WaveSpeed.ai with one CLI command.",
+  "version": "3.0.0",
+  "description": "AI asset generation skills for Claude Code. Generate multi-scene Kling 3.0 video demos and Nano Banana 2 images via WaveSpeed.ai.",
   "type": "module",
   "bin": {
-    "videoskills": "./cli/index.js"
+    "videoskills": "./cli/index.js",
+    "assetskills": "./cli/index.js"
   },
   "scripts": {
     "build": "echo 'Static site — no build step needed'",
     "dev": "node landing/server.js",
     "generate": "node cli/index.js generate-demo --model kling3 --scenes all",
     "generate:dry": "node cli/index.js generate-demo --model kling3 --scenes all --dry-run",
+    "generate:images": "node cli/index.js generate-images --model nano-banana-2 --output ./public/demos",
+    "generate:images:dry": "node cli/index.js generate-images --model nano-banana-2 --dry-run --output ./public/demos",
     "list": "node cli/index.js list-scenes --model kling3",
+    "list:images": "node cli/index.js list-presets --model nano-banana-2",
     "serve": "node landing/server.js"
   },
   "dependencies": {
     "commander": "^12.0.0"
   },
-  "keywords": ["ai","video","kling","claude-code","agent-skills","skills","video-generation","landing-page","demo","cli"],
+  "keywords": ["ai","video","kling","claude-code","agent-skills","skills","video-generation","landing-page","demo","cli","image","nano-banana-2","asset-generation","multi-modal"],
   "files": ["skills/","cli/","landing/","public/","api/",".claude-plugin/","vercel.json"],
   "engines": { "node": ">=18" },
   "repository": { "type": "git", "url": "https://github.com/moose-lab/landing-page-marketing-skills.git" },

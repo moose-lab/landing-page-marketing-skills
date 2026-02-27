@@ -5,3 +5,6 @@ node_modules/
 .DS_Store
 docs/plans/
 .vercel
+public/demos/images/
+.claude/
+asset-requirements.json

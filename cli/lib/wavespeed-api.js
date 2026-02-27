@@ -51,6 +51,29 @@ export async function createTask(modelPath, input) {
 }
 
 /**
+ * Create an image generation task on WaveSpeed.
+ * @param {string} modelPath - e.g. "google/nano-banana-2/text-to-image"
+ * @param {object} input - Request body (prompt, aspect_ratio, resolution, etc.)
+ * @returns {object} Task data — if sync mode, includes outputs[] directly
+ */
+export async function createImageTask(modelPath, input) {
+  const res = await fetchWithRetry(`${BASE_URL}/${modelPath}`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${getKey()}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(input),
+  });
+
+  const data = await res.json();
+  if (data.code !== 200) {
+    throw new Error(`WaveSpeed API error ${data.code}: ${data.message}`);
+  }
+  return data.data;
+}
+
+/**
  * Poll a task until it completes or fails.
  * @param {string} taskId
  * @param {{ once?: boolean }} opts
@@ -74,6 +97,7 @@ export async function pollTask(taskId, { once = false } = {}) {
       return {
         status: task.status,
         video_url: task.outputs?.[0] || null,
+        output_url: task.outputs?.[0] || null,
         error: task.error || null,
       };
     }
@@ -83,7 +107,7 @@ export async function pollTask(taskId, { once = false } = {}) {
     polls++;
   }
 
-  return { status: 'timeout', video_url: null, error: 'Max poll time exceeded' };
+  return { status: 'timeout', video_url: null, output_url: null, error: 'Max poll time exceeded' };
 }
 
 function sleep(ms) {

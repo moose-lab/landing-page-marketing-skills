@@ -90,11 +90,34 @@ node cli/index.js generate-demo --model kling3 --custom-presets ./public/demos/c
 node cli/index.js generate-demo --model kling3 --scenes ecommerce_product_360,fashion_editorial,anime_action_scene
 ```
 
-### Step 5: Verify Output
+### Step 5: Smart Cover Selection
+After video generation, select the best highlight moment as the video cover/thumbnail. Every video asset needs an eye-catching cover — the default first-frame approach misses the most visually compelling moments.
+
+```bash
+# Generate AI-scored smart covers for all completed videos
+node cli/index.js smart-cover --manifest ./public/demos/kling3-demos.json
+
+# Optional: enhance the selected cover frame with Nano Banana 2
+node cli/index.js smart-cover --manifest ./public/demos/kling3-demos.json --enhance
+```
+
+The smart cover system:
+1. Extracts 12 candidate frames at key positions throughout each video (5%, 10%, 18%, 25%, 33%, 40%, 50%, 58%, 67%, 75%, 85%, 92%)
+2. Scores each frame using multiple quality factors:
+   - **Color variance** (30% weight): higher color variety = more visually engaging
+   - **File size** (25% weight): larger compressed size = more visual detail
+   - **Edge density** (25% weight): more edges = sharper, more detailed frame
+   - **Brightness balance** (20% weight): penalizes too dark or too bright frames
+3. Selects the frame with the highest composite score as the cover
+4. Optionally enhances the selected frame via Nano Banana 2 edit API for cinematic color grading
+
+Always run smart cover after generating videos — high-quality covers significantly improve user engagement and click-through rates.
+
+### Step 6: Verify Output
 ```bash
 node landing/server.js
 # Open http://localhost:3000 → scroll to Gallery section
-# Verify videos play, prompts are shown, aspect ratios are correct
+# Verify videos play with smart covers, prompts are shown, aspect ratios are correct
 ```
 
 ## Model Capabilities (Kling 3.0 via WaveSpeed)

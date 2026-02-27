@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "name": "videoskills",
-    "description": "AI video generation skills for Claude Code. Generate multi-scene Kling 3.0 demos, hot video types, and landing page galleries with one CLI command.",
+    "name": "assetskills",
+    "description": "AI asset generation skills for Claude Code. Video + image generation with Kling 3.0 and Nano Banana 2.",
     "version": "1.0.0",
     "author": "videoskills",
     "homepage": "https://moose-lab.github.io/landing-page-marketing-skills",
@@ -14,6 +14,12 @@
       "source": "kling3",
       "description": "Generate multi-scene AI video demos with Kling 3.0 Omni. 7 hot scene presets: product showcase, cinematic landscape, lifestyle reel, viral hook, explainer, fashion, before/after. Includes CLI + Node.js landing page gallery.",
       "skills": ["./skills/kling3"]
+    },
+    {
+      "name": "nano-banana-2-image-assets",
+      "source": "nano-banana-2",
+      "description": "Generate commercial AI images with Nano Banana 2. 5 categories: hero backgrounds, product shots, lifestyle, abstract, icons. Includes HTML asset scanner and trend-driven prompt enrichment.",
+      "skills": ["./skills/nano-banana-2"]
     }
   ]
 }

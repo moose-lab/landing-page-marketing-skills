@@ -1,0 +1,247 @@
+{
+  "model": "nano-banana-2",
+  "provider": "wavespeed",
+  "asset_type": "image",
+  "generated_at": "2026-02-27T17:26:09.684Z",
+  "demos": [
+    {
+      "key": "hero_gradient_abstract",
+      "label": "Abstract Gradient Flow",
+      "category": "hero_backgrounds",
+      "status": "completed",
+      "image_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/a41329b0deb9437ca16c027b234c8888/1.png",
+      "local_path": "images/hero_gradient_abstract.png",
+      "prompt": "Ultra-wide cinematic abstract gradient flowing background, deep indigo to electric cyan to warm amber color transition, smooth organic fluid dynamics, volumetric light rays piercing through ethereal mist, 8K resolution, commercial landing page hero, hyper-clean modern aesthetic",
+      "negative_prompt": "text, watermark, logo, blurry, noisy, low quality, pixelated",
+      "settings": {
+        "resolution": "4k",
+        "output_format": "png",
+        "enable_sync_mode": true,
+        "aspect_ratio": "16:9"
+      },
+      "tags": [
+        "abstract",
+        "gradient"
+      ],
+      "error": null
+    },
+    {
+      "key": "hero_nature_aerial",
+      "label": "Aerial Nature Vista",
+      "category": "hero_backgrounds",
+      "status": "completed",
+      "image_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/0ab33c8ba46b4978851c3e9b05ab9ec8/1.png",
+      "local_path": "images/hero_nature_aerial.png",
+      "prompt": "Breathtaking aerial drone shot of turquoise ocean meeting white sand beach, dramatic golden hour lighting, long shadows across dunes, crystal clear water with visible reef patterns, cinematic wide-angle panorama, commercial travel website hero image, ultra-sharp 8K detail",
+      "negative_prompt": "people, text, watermark, overexposed, blurry, artificial",
+      "settings": {
+        "resolution": "4k",
+        "output_format": "png",
+        "enable_sync_mode": true,
+        "aspect_ratio": "16:9"
+      },
+      "tags": [
+        "nature",
+        "aerial"
+      ],
+      "error": null
+    },
+    {
+      "key": "hero_tech_minimal",
+      "label": "Minimal Tech Surface",
+      "category": "hero_backgrounds",
+      "status": "completed",
+      "image_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/4c0bcfa42943498a8f4f9fe700ebf5b3/1.png",
+      "local_path": "images/hero_tech_minimal.png",
+      "prompt": "Ultra-minimal technology-inspired background surface, subtle geometric mesh pattern in gunmetal and silver, soft gaussian light bloom from top-left, premium matte material texture, clean modern SaaS website hero, studio-lit product stage aesthetic",
+      "negative_prompt": "text, watermark, busy, cluttered, colorful, noisy",
+      "settings": {
+        "resolution": "4k",
+        "output_format": "png",
+        "enable_sync_mode": true,
+        "aspect_ratio": "16:9"
+      },
+      "tags": [
+        "tech",
+        "minimal"
+      ],
+      "error": null
+    },
+    {
+      "key": "product_floating_minimal",
+      "label": "Floating Product Minimal",
+      "category": "product_shots",
+      "status": "completed",
+      "image_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/c734267fdfa94890bea24fc4b2fed139/1.png",
+      "local_path": "images/product_floating_minimal.png",
+      "prompt": "Premium product floating in mid-air on pure white infinite studio background, soft shadow underneath, three-point studio lighting setup, commercial product photography, sharp focus, clean ecommerce aesthetic, professional packshot",
+      "negative_prompt": "text, watermark, blurry, dark background, messy, reflections",
+      "settings": {
+        "resolution": "2k",
+        "output_format": "png",
+        "enable_sync_mode": true,
+        "aspect_ratio": "1:1"
+      },
+      "tags": [
+        "product",
+        "minimal",
+        "ecommerce"
+      ],
+      "error": null
+    },
+    {
+      "key": "product_lifestyle_desk",
+      "label": "Lifestyle Desk Scene",
+      "category": "product_shots",
+      "status": "completed",
+      "image_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/9c142af6da0644a983f748ea1322b47c/1.png",
+      "local_path": "images/product_lifestyle_desk.png",
+      "prompt": "Top-down flat lay product arrangement on warm oak desk surface, minimalist accessories scattered around, soft natural window light from left side, lifestyle brand photography, Instagram-worthy composition, shallow depth of field edges",
+      "negative_prompt": "text, watermark, cluttered, dark, blurry, unrealistic colors",
+      "settings": {
+        "resolution": "2k",
+        "output_format": "png",
+        "enable_sync_mode": true,
+        "aspect_ratio": "1:1"
+      },
+      "tags": [
+        "product",
+        "lifestyle",
+        "flatlay"
+      ],
+      "error": null
+    },
+    {
+      "key": "lifestyle_cafe_morning",
+      "label": "Morning Cafe Moment",
+      "category": "lifestyle",
+      "status": "completed",
+      "image_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/e0d0de4d472e47d8a8255e6db6bbfa5e/1.png",
+      "local_path": "images/lifestyle_cafe_morning.png",
+      "prompt": "Warm cozy cafe interior at golden morning hour, sunlight streaming through large windows, steaming artisan coffee on marble table, fresh pastry nearby, soft bokeh background with blurred patrons, lifestyle brand photography, inviting atmosphere",
+      "negative_prompt": "text, watermark, faces, identifiable people, dark, blurry, low quality",
+      "settings": {
+        "resolution": "2k",
+        "output_format": "png",
+        "enable_sync_mode": true,
+        "aspect_ratio": "3:2"
+      },
+      "tags": [
+        "lifestyle",
+        "cafe",
+        "warm"
+      ],
+      "error": null
+    },
+    {
+      "key": "lifestyle_outdoor_adventure",
+      "label": "Outdoor Adventure Scene",
+      "category": "lifestyle",
+      "status": "completed",
+      "image_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/b00bb6236d5745878dfed0d07ce4a036/1.png",
+      "local_path": "images/lifestyle_outdoor_adventure.png",
+      "prompt": "Epic mountain landscape at sunrise, misty valleys below, hiking trail winding through alpine meadows with wildflowers, dramatic sky with golden clouds, adventure brand photography, aspirational outdoor lifestyle, ultra-wide cinematic composition",
+      "negative_prompt": "text, watermark, people, blurry, oversaturated, artificial",
+      "settings": {
+        "resolution": "2k",
+        "output_format": "png",
+        "enable_sync_mode": true,
+        "aspect_ratio": "3:2"
+      },
+      "tags": [
+        "lifestyle",
+        "outdoor",
+        "adventure"
+      ],
+      "error": null
+    },
+    {
+      "key": "abstract_marble_luxury",
+      "label": "Luxury Marble Texture",
+      "category": "abstract_decorative",
+      "status": "completed",
+      "image_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/c47056c93f2d46e78728fb124f65724c/1.png",
+      "local_path": "images/abstract_marble_luxury.png",
+      "prompt": "Macro photograph of premium white Calacatta marble surface with dramatic gold and grey veining, studio lighting highlighting natural stone texture, luxury interior design material, high-end brand background, ultra-sharp detail",
+      "negative_prompt": "text, watermark, blurry, low quality, fake looking, plastic",
+      "settings": {
+        "resolution": "2k",
+        "output_format": "png",
+        "enable_sync_mode": true,
+        "aspect_ratio": "16:9"
+      },
+      "tags": [
+        "abstract",
+        "marble",
+        "luxury"
+      ],
+      "error": null
+    },
+    {
+      "key": "abstract_neon_waves",
+      "label": "Neon Light Waves",
+      "category": "abstract_decorative",
+      "status": "completed",
+      "image_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/7d74cef299ad478e907602b2671c86bb/1.png",
+      "local_path": "images/abstract_neon_waves.png",
+      "prompt": "Dynamic flowing neon light waves against dark background, electric blue and hot magenta energy streams intertwining, smooth long-exposure light painting effect, futuristic tech brand aesthetic, cyberpunk-inspired abstract art, vibrant glowing trails",
+      "negative_prompt": "text, watermark, blurry, noisy, pixelated, faces, objects",
+      "settings": {
+        "resolution": "2k",
+        "output_format": "png",
+        "enable_sync_mode": true,
+        "aspect_ratio": "16:9"
+      },
+      "tags": [
+        "abstract",
+        "neon",
+        "tech"
+      ],
+      "error": null
+    },
+    {
+      "key": "icon_3d_glossy",
+      "label": "3D Glossy Icon",
+      "category": "icons_illustrations",
+      "status": "completed",
+      "image_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/2d8ce4d37df6468fb97df029c55181bc/1.png",
+      "local_path": "images/icon_3d_glossy.png",
+      "prompt": "Single 3D glossy app icon centered on transparent-style light background, smooth rounded corners, vibrant gradient surface from electric blue to purple, subtle reflection on bottom, professional UI icon design, Apple-style polish",
+      "negative_prompt": "text, multiple icons, watermark, blurry, flat, matte",
+      "settings": {
+        "resolution": "1k",
+        "output_format": "png",
+        "enable_sync_mode": true,
+        "aspect_ratio": "1:1"
+      },
+      "tags": [
+        "icon",
+        "3d",
+        "glossy"
+      ],
+      "error": null
+    },
+    {
+      "key": "illustration_isometric",
+      "label": "Isometric Illustration",
+      "category": "icons_illustrations",
+      "status": "completed",
+      "image_url": "https://d1q70pf5vjeyhc.cloudfront.net/predictions/e0c34ab4a8564cfca667b9544dd3ee79/1.png",
+      "local_path": "images/illustration_isometric.png",
+      "prompt": "Clean isometric illustration of a modern workspace setup, computer monitor showing dashboard, desk accessories, potted plant, warm color palette with soft shadows, vector art style, SaaS website illustration, friendly and professional",
+      "negative_prompt": "text, watermark, photorealistic, blurry, messy, dark",
+      "settings": {
+        "resolution": "1k",
+        "output_format": "png",
+        "enable_sync_mode": true,
+        "aspect_ratio": "1:1"
+      },
+      "tags": [
+        "illustration",
+        "isometric",
+        "workspace"
+      ],
+      "error": null
+    }
+  ]
+}

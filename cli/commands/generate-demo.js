@@ -1,11 +1,12 @@
 import { loadPresets } from '../lib/presets.js';
 import { createTask, pollTask } from '../lib/wavespeed-api.js';
 import { saveManifest } from '../lib/manifest.js';
+import { generateThumbnails } from '../lib/thumbnail.js';
 
 export async function generateDemo(options) {
   const { model, scenes: scenesArg, output, dryRun, customPresets } = options;
 
-  console.log(`\n🎬 videoskills — generate-demo`);
+  console.log(`\n🎬 assetskills — generate-demo`);
   console.log(`   model   : ${model}`);
   console.log(`   scenes  : ${scenesArg}`);
   console.log(`   output  : ${output}`);
@@ -96,6 +97,15 @@ export async function generateDemo(options) {
     }
 
     console.log('');
+  }
+
+  // Generate smart thumbnails for completed videos
+  const completedCount = results.filter(r => r.status === 'completed').length;
+  if (completedCount > 0 && !dryRun) {
+    console.log(`\n🖼  Generating smart thumbnails for ${completedCount} video(s):\n`);
+    const resultsWithThumbs = await generateThumbnails(output, results);
+    results.length = 0;
+    results.push(...resultsWithThumbs);
   }
 
   // Save manifest for landing page

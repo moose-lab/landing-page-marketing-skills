@@ -1,0 +1,7 @@
+{
+  "name": "nano-banana-2-image-assets",
+  "version": "1.0.0",
+  "description": "Generate commercial AI images with Nano Banana 2 for landing pages and marketing.",
+  "skills": ["../SKILL.md"],
+  "assets": ["../asset-presets.json"]
+}
